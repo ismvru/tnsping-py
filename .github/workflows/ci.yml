@@ -1,0 +1,23 @@
+name: Python tests
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: ismv/pytest:latest
+          options: -v ${{ github.workspace }}:/code
+          shell: bash
+          run: |
+            python3 fake_tnsping_responder.py &
+            python-test
+
+      - uses: codecov/codecov-action@v3
+        with:
+          files: test-results/coverage.xml
