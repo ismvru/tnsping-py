@@ -4,8 +4,11 @@
   - [Usage](#usage)
   - [Examples](#examples)
   - [Tests](#tests)
-    - [On Oracle Database](#on-oracle-database)
-    - [On fake TNSPing responder](#on-fake-tnsping-responder)
+    - [Using Oracle Database](#using-oracle-database)
+    - [Using fake TNSPing responder](#using-fake-tnsping-responder)
+
+[![codecov](https://codecov.io/gh/ismvru/tsnping-py/branch/master/graph/badge.svg?token=5AQSDZ8S7Q)](https://codecov.io/gh/ismvru/tsnping-py)
+[![Python tests](https://github.com/ismvru/tsnping-py/actions/workflows/ci.yml/badge.svg)](https://github.com/ismvru/tsnping-py/actions/workflows/ci.yml)
 
 Oracle TNSPING application, written on pure python
 
@@ -52,7 +55,7 @@ options:
 
 ## Tests
 
-### On Oracle Database
+### Using Oracle Database
 
 Run Oracle Database XE (you may use `run_oracle_database.sh` script, but for script usage you need Oracle account with `container-registry.oracle.com` access)
 
@@ -73,7 +76,7 @@ test_tnsping.py::test_cant_connect PASSED                                       
 =================================== 2 passed in 0.01s ===================================
 ```
 
-### On fake TNSPing responder
+### Using fake TNSPing responder
 
 Run `fake_tnsping_responder.py`
 
