@@ -1,4 +1,9 @@
 #!/bin/bash
+# This project is libre, and licenced under the terms of the
+# DO WHAT THE FUCK YOU WANT TO PUBLIC LICENCE, version 3.1,
+# as published by dtf on July 2019. See the COPYING file or
+# https://ph.dtf.wtf/w/wtfpl/#version-3-1 for more details.
+
 set -ex
 docker login container-registry.oracle.com
 CONTAINER=$(docker run -d --rm -p 1521:1521 container-registry.oracle.com/database/express:21.3.0-xe)
