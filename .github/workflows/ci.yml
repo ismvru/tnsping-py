@@ -9,6 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Prepare to pytest
+        run: pip install pytest pytest-cov
+
       - name: Test
         run: |
           python3 fake_tnsping_responder.py &
