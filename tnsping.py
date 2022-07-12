@@ -50,7 +50,7 @@ def tnsping(db_addr: str, db_port: int = 1521, db_timeout: float = 1) -> float:
     return (te - ts) / 1000000000
 
 
-if __name__ == "__main__":
+def main():
     # Parse args
     parser = argparse.ArgumentParser()
     parser.add_argument("host", type=str, help="Database hostname or IP")
@@ -68,3 +68,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print(tnsping(args.host, args.port, args.timeout))
+
+
+if __name__ == "__main__":
+    main()
