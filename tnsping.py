@@ -39,7 +39,6 @@ def tnsping(db_addr: str, db_port: int = 1521, db_timeout: float = 1) -> float:
                 if not data:
                     break
                 recv = data[12:].decode()
-                print(recv)
     # Return false on any errors
     except Exception as e:
         print(e.__class__, e, file=sys.stderr)
