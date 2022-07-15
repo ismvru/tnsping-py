@@ -95,16 +95,33 @@ options:
 
 ## Examples
 
+One request to DB
+
 ```bash
 ./tnsping.py localhost
-0.001087312
+0.0007433891296386719
 ```
+
+5 requests to DB with 0.1s interval
+
+```bash
+./tnsping.py localhost -i 0.1 -c 5
+0.0006456375122070312
+0.0007336139678955078
+0.0007565021514892578
+0.0007164478302001953
+0.0007593631744384766
+```
+
+One request to DB, but nothing listens on port
 
 ```bash
 ./tnsping.py localhost -p 1522
 <class 'ConnectionRefusedError'> [Errno 111] Connection refused
 -1
 ```
+
+One request to DB, but firewall drops all requests on port
 
 ```bash
 ./tnsping.py some_random_drop_host -p 1522
@@ -114,7 +131,9 @@ options:
 
 ## Tests
 
-All tests written for Python 3 version. A python 2 version has been written, but will not be further developed, since Python 2 [is already outdated](https://www.python.org/doc/sunset-python-2/) at the moment of development
+All tests written for Python 3 version.
+
+A python 2 version has been written, but will not be further developed, since Python 2 [is already outdated](https://www.python.org/doc/sunset-python-2/) at the moment of development
 
 ### Using Oracle Database
 
