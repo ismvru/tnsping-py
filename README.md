@@ -2,6 +2,9 @@
 
 - [Tnsping on pure python](#tnsping-on-pure-python)
   - [Usage](#usage)
+    - [Python3 version](#python3-version)
+    - [Python2 version](#python2-version)
+    - [Docker version](#docker-version)
   - [Examples](#examples)
   - [Tests](#tests)
     - [Using Oracle Database](#using-oracle-database)
@@ -23,15 +26,71 @@ tnsping.py prints:
 
 ## Usage
 
+### Python3 version
+
 ```text
-usage: tnsping.py [-h] [--port [PORT]] host
+usage: tnsping.py [-h] [--port [PORT]] [--timeout [TIMEOUT]] [--count [COUNT]] [--interval [INTERVAL]] host
 
 positional arguments:
-  host
+  host                  Database hostname or IP
 
 options:
   -h, --help            show this help message and exit
   --port [PORT], -p [PORT]
+                        Database port
+  --timeout [TIMEOUT], -t [TIMEOUT]
+                        Database connection timeout
+  --count [COUNT], -c [COUNT]
+                        Count of tnsping trys
+  --interval [INTERVAL], -i [INTERVAL]
+                        Interval between requests
+```
+
+### Python2 version
+
+```text
+usage: tnsping_py2.py [-h] [--port [PORT]] [--timeout [TIMEOUT]]
+                      [--count [COUNT]] [--interval [INTERVAL]]
+                      host
+
+positional arguments:
+  host                  Database hostname or IP
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --port [PORT], -p [PORT]
+                        Database port
+  --timeout [TIMEOUT], -t [TIMEOUT]
+                        Database connection timeout
+  --count [COUNT], -c [COUNT]
+                        Count of tnsping trys
+  --interval [INTERVAL], -i [INTERVAL]
+                        Interval between requests
+```
+
+### Docker version
+
+```bash
+docker build . --tag registry/image:tag
+```
+
+```text
+docker run -it --rm registry/image:tag -h
+usage: tnsping.py [-h] [--port [PORT]] [--timeout [TIMEOUT]] [--count [COUNT]] [--interval [INTERVAL]] host
+
+positional arguments:
+  host                  Database hostname or IP
+
+options:
+  -h, --help            show this help message and exit
+  --port [PORT], -p [PORT]
+                        Database port
+  --timeout [TIMEOUT], -t [TIMEOUT]
+                        Database connection timeout
+  --count [COUNT], -c [COUNT]
+                        Count of tnsping trys
+  --interval [INTERVAL], -i [INTERVAL]
+                        Interval between requests
 ```
 
 ## Examples
@@ -54,6 +113,8 @@ options:
 ```
 
 ## Tests
+
+All tests written for Python 3 version. A python 2 version has been written, but will not be further developed, since Python 2 [is already outdated](https://www.python.org/doc/sunset-python-2/) at the moment of development
 
 ### Using Oracle Database
 
