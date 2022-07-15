@@ -7,7 +7,7 @@
 import socket
 import argparse
 import sys
-from time import time_ns
+from time import time, sleep
 
 
 def tnsping(db_addr: str, db_port: int = 1521, db_timeout: float = 1) -> float:
@@ -28,7 +28,7 @@ def tnsping(db_addr: str, db_port: int = 1521, db_timeout: float = 1) -> float:
         b"\x00\x00\x00\x00\x00\x00\x00\x00(CONNECT_DATA=(COMMAND=ping))"
     )
     # Try to send PING
-    ts = time_ns()
+    ts = time()
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             sock.settimeout(db_timeout)
@@ -46,8 +46,8 @@ def tnsping(db_addr: str, db_port: int = 1521, db_timeout: float = 1) -> float:
     # Return false if string from DB is not correct
     if recv != "(DESCRIPTION=(TMP=)(VSNNUM=0)(ERR=0)(ALIAS=LISTENER))":
         return -1
-    te = time_ns()
-    return (te - ts) / 1000000000
+    te = time()
+    return te - ts
 
 
 def main():
@@ -65,9 +65,29 @@ def main():
         type=float,
         help="Database connection timeout",
     )
+    parser.add_argument(
+        "--count",
+        "-c",
+        nargs="?",
+        default=1,
+        type=int,
+        help="Count of tnsping trys",
+    )
+    parser.add_argument(
+        "--interval",
+        "-i",
+        nargs="?",
+        default=1,
+        type=float,
+        help="Interval between requests",
+    )
     args = parser.parse_args()
 
-    print(tnsping(args.host, args.port, args.timeout))
+    for _ in range(args.count):
+        print(tnsping(args.host, args.port, args.timeout))
+        if args.count > 1:
+            sleep(args.interval)
+    args = parser.parse_args()
 
 
 if __name__ == "__main__":
