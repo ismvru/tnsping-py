@@ -146,22 +146,28 @@ pytest -v
 ================================== test session starts ==================================
 platform linux -- Python 3.10.5, pytest-7.1.2, pluggy-1.0.0 -- /usr/bin/python
 cachedir: .pytest_cache
-rootdir: /code/tnsping-py
-plugins: betamax-0.8.1, cov-2.12.1
-collected 10 items                                                                      
+rootdir: /code/own/tnsping-py
+plugins: anyio-3.6.1, betamax-0.8.1, cov-2.12.1
+collected 16 items                                                                      
 
-test_tnsping.py::test_logic_localhost PASSED                                      [ 10%]
-test_tnsping.py::test_logic_localhost_invalid_port PASSED                         [ 20%]
-test_tnsping.py::test_args_help PASSED                                            [ 30%]
-test_tnsping.py::test_args_no_host PASSED                                         [ 40%]
-test_tnsping.py::test_args_localhost PASSED                                       [ 50%]
-test_tnsping.py::test_args_localhost_with_timeout PASSED                          [ 60%]
-test_tnsping.py::test_args_localhost_with_char_timeout PASSED                     [ 70%]
-test_tnsping.py::test_args_localhost_with_port PASSED                             [ 80%]
-test_tnsping.py::test_args_localhost_with_port_refused PASSED                     [ 90%]
-test_tnsping.py::test_args_localhost_with_char_port PASSED                        [100%]
+test_tnsping.py::test_logic_localhost PASSED                                      [  6%]
+test_tnsping.py::test_logic_localhost_invalid_port PASSED                         [ 12%]
+test_tnsping.py::test_args_help PASSED                                            [ 18%]
+test_tnsping.py::test_args_no_host PASSED                                         [ 25%]
+test_tnsping.py::test_args_localhost PASSED                                       [ 31%]
+test_tnsping.py::test_args_localhost_with_timeout PASSED                          [ 37%]
+test_tnsping.py::test_args_localhost_with_char_timeout PASSED                     [ 43%]
+test_tnsping.py::test_args_localhost_with_port PASSED                             [ 50%]
+test_tnsping.py::test_args_localhost_with_port_refused PASSED                     [ 56%]
+test_tnsping.py::test_args_localhost_with_char_port PASSED                        [ 62%]
+test_tnsping.py::test_args_localhost_with_count PASSED                            [ 68%]
+test_tnsping.py::test_args_localhost_with_count_0 PASSED                          [ 75%]
+test_tnsping.py::test_args_localhost_with_count_char PASSED                       [ 81%]
+test_tnsping.py::test_args_localhost_with_count_interval PASSED                   [ 87%]
+test_tnsping.py::test_args_localhost_with_count_interval_01 PASSED                [ 93%]
+test_tnsping.py::test_args_localhost_with_count_interval_char PASSED              [100%]
 
-================================== 10 passed in 0.02s ===================================
+================================== 16 passed in 10.57s ==================================
 ```
 
 ### Using fake TNSPing responder
@@ -175,22 +181,28 @@ pytest -v
 ================================== test session starts ==================================
 platform linux -- Python 3.10.5, pytest-7.1.2, pluggy-1.0.0 -- /usr/bin/python
 cachedir: .pytest_cache
-rootdir: /code/tnsping-py
-plugins: betamax-0.8.1, cov-2.12.1
-collected 10 items                                                                      
+rootdir: /code/own/tnsping-py
+plugins: anyio-3.6.1, betamax-0.8.1, cov-2.12.1
+collected 16 items                                                                      
 
-test_tnsping.py::test_logic_localhost PASSED                                      [ 10%]
-test_tnsping.py::test_logic_localhost_invalid_port PASSED                         [ 20%]
-test_tnsping.py::test_args_help PASSED                                            [ 30%]
-test_tnsping.py::test_args_no_host PASSED                                         [ 40%]
-test_tnsping.py::test_args_localhost PASSED                                       [ 50%]
-test_tnsping.py::test_args_localhost_with_timeout PASSED                          [ 60%]
-test_tnsping.py::test_args_localhost_with_char_timeout PASSED                     [ 70%]
-test_tnsping.py::test_args_localhost_with_port PASSED                             [ 80%]
-test_tnsping.py::test_args_localhost_with_port_refused PASSED                     [ 90%]
-test_tnsping.py::test_args_localhost_with_char_port PASSED                        [100%]
+test_tnsping.py::test_logic_localhost PASSED                                      [  6%]
+test_tnsping.py::test_logic_localhost_invalid_port PASSED                         [ 12%]
+test_tnsping.py::test_args_help PASSED                                            [ 18%]
+test_tnsping.py::test_args_no_host PASSED                                         [ 25%]
+test_tnsping.py::test_args_localhost PASSED                                       [ 31%]
+test_tnsping.py::test_args_localhost_with_timeout PASSED                          [ 37%]
+test_tnsping.py::test_args_localhost_with_char_timeout PASSED                     [ 43%]
+test_tnsping.py::test_args_localhost_with_port PASSED                             [ 50%]
+test_tnsping.py::test_args_localhost_with_port_refused PASSED                     [ 56%]
+test_tnsping.py::test_args_localhost_with_char_port PASSED                        [ 62%]
+test_tnsping.py::test_args_localhost_with_count PASSED                            [ 68%]
+test_tnsping.py::test_args_localhost_with_count_0 PASSED                          [ 75%]
+test_tnsping.py::test_args_localhost_with_count_char PASSED                       [ 81%]
+test_tnsping.py::test_args_localhost_with_count_interval PASSED                   [ 87%]
+test_tnsping.py::test_args_localhost_with_count_interval_01 PASSED                [ 93%]
+test_tnsping.py::test_args_localhost_with_count_interval_char PASSED              [100%]
 
-================================== 10 passed in 0.02s ===================================
+================================== 16 passed in 10.57s ==================================
 ```
 
 In fake_tnsping_responder logs you may see:

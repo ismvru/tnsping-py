@@ -5,6 +5,8 @@
 
 from tnsping import tnsping, main
 import sys
+from time import time
+from pytest import approx
 
 
 def test_logic_localhost():
@@ -24,7 +26,7 @@ def test_args_help(capsys):
     except SystemExit:
         pass
     stdout, stderr = capsys.readouterr()
-    assert stdout.find("[-h] [--port [PORT]] [--timeout [TIMEOUT]] host") != -1
+    assert stdout.find("usage:  [-h]") != -1
     assert stderr == ""
 
 
@@ -90,4 +92,69 @@ def test_args_localhost_with_char_port(capsys):
         pass
     stdout, stderr = capsys.readouterr()
     assert stderr.find("error: argument --port/-p: invalid int value: 'abc'") != -1
+    assert stdout == ""
+
+
+def test_args_localhost_with_count(capsys):
+    sys.argv = ["", "localhost", "--count", "5"]
+    main()
+    stdout, stderr = capsys.readouterr()
+    assert stderr == ""
+    for line in stdout.splitlines():
+        assert line.find("0.") == 0
+
+
+def test_args_localhost_with_count_0(capsys):
+    sys.argv = ["", "localhost", "--count", "0"]
+    main()
+    stdout, stderr = capsys.readouterr()
+    assert stderr == ""
+    assert stdout == ""
+
+
+def test_args_localhost_with_count_char(capsys):
+    sys.argv = ["", "localhost", "--count", "abc"]
+    try:
+        main()
+    except SystemExit:
+        pass
+    stdout, stderr = capsys.readouterr()
+    assert stderr.find("argument --count/-c: invalid int value: 'abc'") != -1
+    assert stdout == ""
+
+
+def test_args_localhost_with_count_interval(capsys):
+    sys.argv = ["", "localhost", "--count", "5", "--interval", "1"]
+    ts = time()
+    main()
+    tf = time()
+    stdout, stderr = capsys.readouterr()
+    assert stderr == ""
+    for line in stdout.splitlines():
+        assert line.find("0.") == 0
+    assert approx(tf - ts, 0.1) == 5.0
+
+
+def test_args_localhost_with_count_interval_01(capsys):
+    sys.argv = ["", "localhost", "--count", "5", "--interval", "0.1"]
+    ts = time()
+    main()
+    tf = time()
+    stdout, stderr = capsys.readouterr()
+    assert stderr == ""
+    for line in stdout.splitlines():
+        assert line.find("0.") == 0
+    assert approx(tf - ts, 0.1) == 0.5
+
+
+def test_args_localhost_with_count_interval_char(capsys):
+    sys.argv = ["", "localhost", "--count", "5", "--interval", "abc"]
+    try:
+        main()
+    except SystemExit:
+        pass
+    stdout, stderr = capsys.readouterr()
+    assert (
+        stderr.find("error: argument --interval/-i: invalid float value: 'abc'") != -1
+    )
     assert stdout == ""
