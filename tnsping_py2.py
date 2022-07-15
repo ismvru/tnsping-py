@@ -8,7 +8,7 @@ from __future__ import print_function
 import socket
 import argparse
 import sys
-from time import time
+from time import time, sleep
 
 
 def eprint(*args, **kwargs):
@@ -71,9 +71,28 @@ def main():
         type=float,
         help="Database connection timeout",
     )
+    parser.add_argument(
+        "--count",
+        "-c",
+        nargs="?",
+        default=1,
+        type=int,
+        help="Count of tnsping trys",
+    )
+    parser.add_argument(
+        "--interval",
+        "-i",
+        nargs="?",
+        default=1,
+        type=float,
+        help="Interval between requests",
+    )
     args = parser.parse_args()
 
-    print(tnsping(args.host, args.port, args.timeout))
+    for _ in range(args.count):
+        print(tnsping(args.host, args.port, args.timeout))
+        if args.count > 1:
+            sleep(args.interval)
 
 
 if __name__ == "__main__":
