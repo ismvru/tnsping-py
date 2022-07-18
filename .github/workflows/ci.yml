@@ -17,4 +17,10 @@ jobs:
           python3 fake_tnsping_responder.py &
           pytest --cov
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - uses: codecov/codecov-action@v3
