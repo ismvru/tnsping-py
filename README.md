@@ -10,6 +10,7 @@
     - [Using Oracle Database](#using-oracle-database)
     - [Using fake TNSPing responder](#using-fake-tnsping-responder)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ismvru_tsnping-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ismvru_tsnping-py)
 [![codecov](https://codecov.io/gh/ismvru/tsnping-py/branch/master/graph/badge.svg?token=5AQSDZ8S7Q)](https://codecov.io/gh/ismvru/tsnping-py)
 [![Python tests](https://github.com/ismvru/tsnping-py/actions/workflows/ci.yml/badge.svg)](https://github.com/ismvru/tsnping-py/actions/workflows/ci.yml)
 
