@@ -87,7 +87,6 @@ def main():
         print(tnsping(args.host, args.port, args.timeout))
         if args.count > 1:
             sleep(args.interval)
-    args = parser.parse_args()
 
 
 if __name__ == "__main__":
