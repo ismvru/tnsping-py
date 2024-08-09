@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2022 Mikhail Isaev <admin@ismv.ru>
+
 import socketserver
 
 
